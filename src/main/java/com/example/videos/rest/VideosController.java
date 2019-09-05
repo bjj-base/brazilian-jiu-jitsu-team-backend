@@ -1,6 +1,7 @@
 package com.example.videos.rest;
 
 import org.assertj.core.internal.Longs;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.UUID;
 
 import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.OK;
@@ -16,6 +21,10 @@ import static org.springframework.http.HttpStatus.PARTIAL_CONTENT;
 @RestController
 @RequestMapping(value = "/api/videos")
 public class VideosController {
+    @Value("${upload.path.videos}")
+    private String VIDEOS_PATH;
+
+
 //    @GetMapping(value = "/file-name")
     @ResponseBody
     public final ResponseEntity<InputStreamResource> retrieveResource() throws IOException {
@@ -44,9 +53,24 @@ public class VideosController {
     }
 
     @PostMapping(value = "/upload")
-    public ResponseEntity<?> upload (@RequestParam("file") MultipartFile[] file){
-        System.out.println(file);
+    public ResponseEntity<?> upload (@RequestParam("file") MultipartFile[] files) throws IOException {
+        for ( MultipartFile file : Arrays.asList(files) ) {
+
+            if (file.isEmpty()) {
+                continue;
+            }
+
+//            if (!"application/pdf".equals(file.getContentType())) {
+//                continue;
+//            }
+            // Save the actual Images
+            Files.write(Paths.get(VIDEOS_PATH + "/video" + getExtension(file.getOriginalFilename())), file.getBytes());
+        }
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+    private String getExtension(String originalFilename) {
+        String[] tokens = originalFilename.split("\\.");
+        return "." + tokens[tokens.length - 1];
     }
 
     @RequestMapping(value = "/hello")
