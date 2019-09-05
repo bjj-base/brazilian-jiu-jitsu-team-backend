@@ -47,7 +47,7 @@ public class VideosController {
     @RequestMapping(value = "/hello")
     public ResponseEntity<?> sayHello() throws IOException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        InputStream inputStream = classLoader.getResource("videos/fifth.mp4").openStream();
+        InputStream inputStream = classLoader.getResource("videos3/fifth.mp4").openStream();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf("video/mp4"));
         headers.set("Accept-Ranges", "bytes");
