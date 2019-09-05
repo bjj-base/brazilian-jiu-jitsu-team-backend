@@ -6,8 +6,31 @@
 </head>
 <body>
     <h1>Welcome Brother</h1>
-    <video id="my-video" controls preload="auto" width="640" height="400" controlsList="nodownload" src="http://localhost:8080/videos/hello">
-    </video>
-    <video width="500" height="500" url="http://localhost:8080/videos/hello" />
+    <video id="my-video" controls preload="auto" width="640" height="400" controlsList="nodownload" src="http://localhost:8080/videos/hello"></video>
+
+    <form id="upload" action="http://localhost:8080/videos/upload" method="POST" enctype="multipart/form-data">
+
+        <fieldset>
+            <legend>HTML File Upload</legend>
+
+            <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+
+            <div>
+                <label for="fileselect">Files to upload:</label>
+                <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+                <div id="filedrag">or drop files here</div>
+            </div>
+
+            <div id="submitbutton">
+                <button type="submit">Upload Files</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+    <div id="messages">
+        <p>Status Messages</p>
+    </div>
 </body>
 </html>

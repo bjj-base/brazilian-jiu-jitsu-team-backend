@@ -2,10 +2,9 @@ package com.example.videos.rest;
 
 import org.assertj.core.internal.Longs;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +14,7 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.PARTIAL_CONTENT;
 
 @RestController
-@RequestMapping(value = "/videos")
+@RequestMapping(value = "/api/videos")
 public class VideosController {
 //    @GetMapping(value = "/file-name")
     @ResponseBody
@@ -44,6 +43,12 @@ public class VideosController {
 //        }*/
     }
 
+    @PostMapping(value = "/upload")
+    public ResponseEntity<?> upload (@RequestParam("file") MultipartFile[] file){
+        System.out.println(file);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/hello")
     public ResponseEntity<?> sayHello() throws IOException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
@@ -56,5 +61,11 @@ public class VideosController {
         headers.set("Connection", "keep-alive");
         headers.set("Content-Transfer-Encoding", "binary");
         return new ResponseEntity<>(new InputStreamResource(inputStream), headers, OK);
+    }
+
+    @GetMapping(value = "/test")
+    public ResponseEntity<?> test (){
+        System.out.println("we are in");
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
