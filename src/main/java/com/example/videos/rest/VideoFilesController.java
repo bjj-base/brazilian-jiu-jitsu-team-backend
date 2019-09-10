@@ -95,7 +95,7 @@ public class VideoFilesController {
     public ResponseEntity<?> sayHello(@RequestParam Long id) throws IOException {
 
         Optional<Video> video = videoService.findOne(id);
-        File videoFile = new File("/home/devwalker/WebstormProjects/uploaded-videos/" + video.get().getName());
+        File videoFile = new File(VIDEOS_PATH + video.get().getName());
 
 
 
