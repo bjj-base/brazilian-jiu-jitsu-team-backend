@@ -91,7 +91,7 @@ public class VideoFilesController {
         return "." + tokens[tokens.length - 1];
     }
 
-    @RequestMapping(value = "/hello")
+    @RequestMapping(value = "/ello")
     public ResponseEntity<?> sayHello(@RequestParam Long id) throws IOException {
 
         Optional<Video> video = videoService.findOne(id);
