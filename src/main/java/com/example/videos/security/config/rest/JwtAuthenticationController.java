@@ -1,5 +1,9 @@
-package com.example.videos.security.config;
+package com.example.videos.security.config.rest;
 
+import com.example.videos.security.config.JwtRequest;
+import com.example.videos.security.config.JwtResponse;
+import com.example.videos.security.config.JwtUserDetailsService;
+import com.example.videos.security.config.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
