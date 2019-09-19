@@ -1,8 +1,7 @@
 package com.example.videos.rest;
 
-import com.example.videos.model.Video;
+import com.example.videos.model.video.BrasaVideo;
 import com.example.videos.service.VideoService;
-import org.assertj.core.internal.Longs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -18,11 +17,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.UUID;
 
 import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.http.HttpStatus.PARTIAL_CONTENT;
 
 @RestController
 @RequestMapping(value = "/api/files/videos")
@@ -81,10 +78,10 @@ public class VideoFilesController {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                videoService.save(new Video(file.getOriginalFilename()));
+                return ResponseEntity.ok(videoService.saveBrasa(new BrasaVideo(file.getOriginalFilename())));
             }
         }
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok("TODO");
     }
     private String getExtension(String originalFilename) {
         String[] tokens = originalFilename.split("\\.");
@@ -94,7 +91,7 @@ public class VideoFilesController {
     @RequestMapping
     public ResponseEntity<?> streamVideo(@RequestParam Long id) throws IOException {
 
-        Optional<Video> video = videoService.findOne(id);
+        Optional<BrasaVideo> video = videoService.findOneBrasa(id);
         File videoFile = new File(VIDEOS_PATH + video.get().getName());
 
 

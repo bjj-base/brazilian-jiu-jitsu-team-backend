@@ -1,9 +1,9 @@
 package com.example.videos.repository;
 
-import com.example.videos.model.Video;
+import com.example.videos.model.video.YoutubeVideo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VideoRepository extends CrudRepository<Video, Long> {
+public interface YoutubeVideoRepository extends CrudRepository<YoutubeVideo, Long> {
 }
