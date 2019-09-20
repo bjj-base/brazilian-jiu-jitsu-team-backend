@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface YoutubeVideoRepository extends CrudRepository<YoutubeVideo, Long> {
+public interface YoutubeVideoRepository extends AbstractRepository<YoutubeVideo> {
 }
