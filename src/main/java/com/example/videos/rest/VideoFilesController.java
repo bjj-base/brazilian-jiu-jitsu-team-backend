@@ -17,6 +17,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.UUID.*;
 
 import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.OK;
@@ -72,13 +74,13 @@ public class VideoFilesController {
 //                continue;
 //            }
             // Save the actual Images
-
+            String uuid = UUID.randomUUID().toString();
             try {
-                Files.write(Paths.get(VIDEOS_PATH + "/" + file.getOriginalFilename()), file.getBytes());
+                Files.write(Paths.get(VIDEOS_PATH + "/" + uuid), file.getBytes());
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                return ResponseEntity.ok(videoService.saveBrasa(new BrasaVideo(file.getOriginalFilename())));
+                return ResponseEntity.ok(videoService.saveBrasa(new BrasaVideo(uuid, file.getOriginalFilename())));
             }
         }
         return ResponseEntity.ok("TODO");
@@ -92,7 +94,7 @@ public class VideoFilesController {
     public ResponseEntity<?> streamVideo(@RequestParam Long id) throws IOException {
 
         Optional<BrasaVideo> video = videoService.findOneBrasa(id);
-        File videoFile = new File(VIDEOS_PATH + video.get().getName());
+        File videoFile = new File(VIDEOS_PATH + video.get().getUuid());
 
 
 

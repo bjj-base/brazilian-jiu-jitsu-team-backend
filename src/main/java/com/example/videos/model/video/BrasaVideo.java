@@ -12,7 +12,11 @@ public class BrasaVideo extends Video {
 
     public BrasaVideo() {}
 
-    public BrasaVideo(String name) {
+    @Column(name = "uuid")
+    private String uuid;
+
+    public BrasaVideo(String uuid, String name) {
         super(name);
+        this.uuid = uuid;
     }
 }

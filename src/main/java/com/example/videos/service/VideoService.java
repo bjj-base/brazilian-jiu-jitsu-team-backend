@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class VideoService {
+public class VideoService <T extends Video> {
     @Autowired
     private BrasaVideoRepository brasaVideoRepository;
 
@@ -41,7 +41,7 @@ public class VideoService {
         return videos;
     }
 
-    public Optional<Video> findOneById(Long id) {
+    public Optional<T> findOneById(Long id) {
         return videoRepository.findById(id);
     }
 
