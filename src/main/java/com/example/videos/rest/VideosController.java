@@ -7,6 +7,7 @@ import com.example.videos.model.video.YoutubeVideo;
 import com.example.videos.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +42,11 @@ public class VideosController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getVideo(@PathVariable Long id) {
-        return ResponseEntity.ok(HttpEntity.EMPTY);
+        Optional<BrasaVideo> brasaVideo = videoService.findOneBrasa(id);
+        if ( brasaVideo.isPresent() ) return  ResponseEntity.ok(brasaVideo.get());
+        Optional<YoutubeVideo> youtubeVideo = videoService.findOneYoutube(id);
+        if ( youtubeVideo.isPresent() ) return  ResponseEntity.ok(youtubeVideo.get());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpEntity.EMPTY);
     }
 
 
