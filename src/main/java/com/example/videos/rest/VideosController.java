@@ -6,10 +6,13 @@ import com.example.videos.model.video.Video;
 import com.example.videos.model.video.YoutubeVideo;
 import com.example.videos.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/videos")
@@ -24,11 +27,23 @@ public class VideosController {
         return ResponseEntity.ok(videos);
     }
 
-    @PostMapping
-    public ResponseEntity<?> post(@RequestParam Source source, @RequestBody YoutubeVideo video) {
+    @PostMapping(value = "/external")
+    public ResponseEntity<?> postExterrnal(@RequestParam Source source, @RequestBody YoutubeVideo video) {
         video.setSource(source.toString());
         return ResponseEntity.ok(videoService.saveYoutube(video));
     }
+
+    @PostMapping
+    public ResponseEntity<?> postBrasaVideo(@RequestParam Source source, @RequestBody BrasaVideo video) {
+        video.setSource(source.toString());
+        return ResponseEntity.ok(videoService.saveBrasa(video));
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getVideo(@PathVariable Long id) {
+        return ResponseEntity.ok(HttpEntity.EMPTY);
+    }
+
 
 
 
