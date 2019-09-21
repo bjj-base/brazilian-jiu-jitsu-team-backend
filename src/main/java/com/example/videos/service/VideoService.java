@@ -4,6 +4,7 @@ import com.example.videos.model.video.BrasaVideo;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.video.YoutubeVideo;
 import com.example.videos.repository.BrasaVideoRepository;
+import com.example.videos.repository.VideoRepository;
 import com.example.videos.repository.YoutubeVideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class VideoService {
     @Autowired
     private YoutubeVideoRepository youtubeVideoRepository;
 
+    @Autowired
+    private VideoRepository videoRepository;
+
 
     /**
      *
@@ -28,13 +32,17 @@ public class VideoService {
      */
     public List<Video> findAll(){
         List<Video> videos = new ArrayList<>();
-        videos.addAll(brasaVideoRepository.findAll());
+        videos.addAll(videoRepository.findAll());
 //                findAllBrasa()
 //                .stream()
 //                .map(v -> (Video)v)
 //                .collect(Collectors.toList());
-        videos.addAll(youtubeVideoRepository.findAll());
+//        videos.addAll(youtubeVideoRepository.findAll());
         return videos;
+    }
+
+    public Optional<Video> findOneById(Long id) {
+        return videoRepository.findById(id);
     }
 
     /**
@@ -53,6 +61,8 @@ public class VideoService {
     public List<BrasaVideo> findAllBrasa(){
         return brasaVideoRepository.findAll();
     }
+
+
 
     /**
      *

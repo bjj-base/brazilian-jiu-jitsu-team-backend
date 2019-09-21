@@ -40,10 +40,10 @@ public class VideosController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getVideo(@PathVariable Long id) {
-        Optional<BrasaVideo> brasaVideo = videoService.findOneBrasa(id);
-        if ( brasaVideo.isPresent() ) return  ResponseEntity.ok(brasaVideo.get());
-        Optional<YoutubeVideo> youtubeVideo = videoService.findOneYoutube(id);
-        if ( youtubeVideo.isPresent() ) return  ResponseEntity.ok(youtubeVideo.get());
+        Optional<Video> video = videoService.findOneById(id);
+        if ( video.isPresent() ) {
+            return ResponseEntity.ok().body(video.get());
+        }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpEntity.EMPTY);
     }
 

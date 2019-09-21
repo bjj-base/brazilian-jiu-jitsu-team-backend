@@ -13,4 +13,5 @@ public interface AbstractRepository<T extends BaseModel> extends CrudRepository<
     @Override
     List<T> findAll();
 
+
 }
