@@ -30,13 +30,11 @@ public class VideosController {
 
     @PostMapping(value = "/external")
     public ResponseEntity<?> postExterrnal(@RequestParam Source source, @RequestBody YoutubeVideo video) {
-        video.setSource(source.toString());
         return ResponseEntity.ok(videoService.saveYoutube(video));
     }
 
     @PostMapping
     public ResponseEntity<?> postBrasaVideo(@RequestParam Source source, @RequestBody BrasaVideo video) {
-        video.setSource(source.toString());
         return ResponseEntity.ok(videoService.saveBrasa(video));
     }
 

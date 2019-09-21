@@ -4,27 +4,28 @@ import com.example.videos.model.BaseModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @Data
-@NoArgsConstructor
-@MappedSuperclass
-public abstract class Video extends BaseModel implements VideoSource {
+@Entity
+@Table(name = "video", indexes = {
+        @Index(columnList = "id", name = "video_id_index")
+})
+@SequenceGenerator(name = "SEQ_STORE", sequenceName = "video_id_seq", allocationSize = 1)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "source", discriminatorType = DiscriminatorType.STRING)
+public abstract class Video extends BaseModel {
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "source")
+    @Column(name = "source", insertable = false, updatable = false)
     private String source;
 
-    public Video(String name, String source) {
+    public Video(String name) {
         this.name = name;
-        this.source = source;
     }
 
-    @Override
-    public void setVideSource() {
-
+    public Video() {
     }
 }
