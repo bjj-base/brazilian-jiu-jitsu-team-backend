@@ -6,6 +6,7 @@ import com.example.videos.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,11 +18,11 @@ public class TagService {
         return tagRepository.save(tag);
     }
 
-    public Iterable<Tag> findAll(){
+    public List<Tag> findAll(){
         return tagRepository.findAll();
     }
 
-    public Optional<Tag> findOne(Long id) {
+    public Optional<Tag> findOneById(Long id) {
         return tagRepository.findById(id);
     }
 

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TagRepository extends CrudRepository<Tag, Long> {
+public interface TagRepository extends AbstractRepository<Tag> {
 }
