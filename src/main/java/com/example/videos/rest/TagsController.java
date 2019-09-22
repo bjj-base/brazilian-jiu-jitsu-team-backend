@@ -1,11 +1,6 @@
 package com.example.videos.rest;
 
-import com.example.videos.dto.VideoDto;
-import com.example.videos.model.Tag;
-import com.example.videos.model.video.BrasaVideo;
-import com.example.videos.model.video.Source;
-import com.example.videos.model.video.Video;
-import com.example.videos.model.video.YoutubeVideo;
+import com.example.videos.tags.Tag;
 import com.example.videos.service.TagService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

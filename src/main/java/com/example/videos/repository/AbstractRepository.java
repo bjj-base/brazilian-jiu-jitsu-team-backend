@@ -13,5 +13,10 @@ public interface AbstractRepository<T extends BaseModel> extends CrudRepository<
     @Override
     List<T> findAll();
 
+//    @Override
+//    Iterable<T> findAllById(Iterable<Long> ids);
+
+
+
 
 }

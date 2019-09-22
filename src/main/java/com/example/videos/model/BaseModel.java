@@ -40,4 +40,6 @@ public class BaseModel {
     @UpdateTimestamp
     @Column(name = "updated_at",  insertable = true, updatable = true)
     protected LocalDateTime updatedAt;
+
+
 }

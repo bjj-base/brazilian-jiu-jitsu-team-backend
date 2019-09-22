@@ -31,14 +31,7 @@ public class VideoService <T extends Video> {
      * @return
      */
     public List<Video> findAll(){
-        List<Video> videos = new ArrayList<>();
-        videos.addAll(videoRepository.findAll());
-//                findAllBrasa()
-//                .stream()
-//                .map(v -> (Video)v)
-//                .collect(Collectors.toList());
-//        videos.addAll(youtubeVideoRepository.findAll());
-        return videos;
+        return videoRepository.findAll();
     }
 
     public Optional<T> findOneById(Long id) {

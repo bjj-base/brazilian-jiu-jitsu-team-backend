@@ -1,12 +1,14 @@
 package com.example.videos.repository;
 
-import com.example.videos.model.AppUser;
-import com.example.videos.model.Tag;
-import org.springframework.data.repository.CrudRepository;
+import com.example.videos.tags.Tag;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface TagRepository extends AbstractRepository<Tag> {
+
+    @Override
+    List<Tag> findAllById(Iterable<Long> ids);
 }

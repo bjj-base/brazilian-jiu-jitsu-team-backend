@@ -1,8 +1,12 @@
-package com.example.videos.model;
+package com.example.videos.tags;
 
+import com.example.videos.model.BaseModel;
+import com.example.videos.model.video.Video;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tag", indexes = {
@@ -22,4 +26,7 @@ public class Tag extends BaseModel {
 
     public Tag() {
     }
+
+//    @ManyToMany(mappedBy = "tags")
+//    private List<Video> videos = new ArrayList<>();
 }
