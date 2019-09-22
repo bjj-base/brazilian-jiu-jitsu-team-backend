@@ -113,8 +113,7 @@ public class VideosController {
     public <T extends Video>  ResponseEntity<?> updateVideo ( @RequestBody VideoDto dto ) throws InvocationTargetException, IllegalAccessException {
         Optional<T> video = videoService.findOneById(dto.getId());
 
-        if ( video.isPresent() && video.get().getSource().equals("YOUTUBE")) {
-            List<Tag> tags = tagService.findAllById(dto.getTagIdList());
+        if ( video.isPresent()) {
             BeanUtils.copyProperties(video.get(), dto);
             Map<Long, Tag> tagMap = tagService.findAllById(dto.getTagIdList())
                     .stream()
@@ -128,18 +127,13 @@ public class VideosController {
                         return  tag;
                     }).collect(Collectors.toList())
             );
-//
-//            video.get().setTags(video.get()
-//                    .getTags()
-//                    .stream()
-//                    .map(tag -> tagMap.get(tag.getId()))
-//                    .collect(Collectors.toList()));
 
-            return ResponseEntity.ok(videoService.saveYoutube((YoutubeVideo) video.get()));
-        } else if ( video.isPresent() && video.get().getSource().equals("BRASA_HELLAS")) {
-            BeanUtils.copyProperties(video.get(), dto);
-            return ResponseEntity.ok(videoService.saveBrasa((BrasaVideo) video.get()));
+            return ResponseEntity.ok(videoService.save(video.get()));
         }
+//        else if ( video.isPresent() && video.get().getSource().equals("BRASA_HELLAS")) {
+//            BeanUtils.copyProperties(video.get(), dto);
+//            return ResponseEntity.ok(videoService.saveBrasa((BrasaVideo) video.get()));
+//        }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpEntity.EMPTY);
     }
 

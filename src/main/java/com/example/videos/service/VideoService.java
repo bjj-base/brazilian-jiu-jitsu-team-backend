@@ -38,6 +38,10 @@ public class VideoService <T extends Video> {
         return videoRepository.findById(id);
     }
 
+    public T save(T video){
+        return (T) videoRepository.save(video);
+    }
+
     /**
      *
      * @param video
