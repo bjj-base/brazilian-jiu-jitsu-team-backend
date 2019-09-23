@@ -1,9 +1,10 @@
 package com.example.videos.security.config.rest;
 
+import com.example.videos.security.config.BrasaAuthenticationManager;
 import com.example.videos.security.config.JwtRequest;
 import com.example.videos.security.config.JwtResponse;
 import com.example.videos.security.config.JwtUserDetailsService;
-import com.example.videos.security.config.JwtUtil;
+import com.example.videos.security.config.jwt.JwtUtil;
 import com.example.videos.security.config.model.BjjPractitioner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class JwtAuthenticationController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private BrasaAuthenticationManager authenticationManager;
 
     @Autowired
     private JwtUtil jwtTokenUtil;

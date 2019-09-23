@@ -16,7 +16,7 @@ public class BjjPractitioner implements UserDetails {
     private Boolean accountNonExpired = true;
     private List<GrantedAuthority> authorities = new ArrayList<>();
 
-    public BjjPractitioner(String password, String username, Boolean enabled, List<GrantedAuthority> authorities) {
+    public BjjPractitioner(String username, String password, Boolean enabled, List<GrantedAuthority> authorities) {
         this.password = password;
         this.username = username;
         this.enabled = enabled;

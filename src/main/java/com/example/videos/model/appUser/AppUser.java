@@ -11,7 +11,7 @@ import javax.persistence.*;
 })
 @SequenceGenerator(name = "SEQ_STORE", sequenceName = "user_id_seq", allocationSize = 1)
 @Data
-public class UserModel extends BaseModel {
+public class AppUser extends BaseModel {
 
     @Column(name = "username")
     private String username;
@@ -23,10 +23,10 @@ public class UserModel extends BaseModel {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    public UserModel() {
+    public AppUser() {
     }
 
-    public UserModel(String username, String password) {
+    public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
     }

@@ -1,5 +1,6 @@
 package com.example.videos.security.config;
 
+import com.example.videos.security.config.filter.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

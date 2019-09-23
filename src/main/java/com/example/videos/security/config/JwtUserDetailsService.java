@@ -1,6 +1,6 @@
 package com.example.videos.security.config;
 
-import com.example.videos.model.appUser.UserModel;
+import com.example.videos.model.appUser.AppUser;
 import com.example.videos.security.config.model.BjjPractitioner;
 import com.example.videos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,11 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+
     @Override
     public BjjPractitioner loadUserByUsername(String username) throws UsernameNotFoundException {
 //        if ("momo".equals(username)) {
-            Optional<UserModel> appUser = userService.findByUsername(username);
+            Optional<AppUser> appUser = userService.findByUsername(username);
 
         if ( appUser.isPresent() ) {
             System.out.println(appUser.get().getUsername());
