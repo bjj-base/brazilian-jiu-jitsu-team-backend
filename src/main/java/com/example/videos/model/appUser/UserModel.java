@@ -1,5 +1,6 @@
-package com.example.videos.model;
+package com.example.videos.model.appUser;
 
+import com.example.videos.model.BaseModel;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 })
 @SequenceGenerator(name = "SEQ_STORE", sequenceName = "user_id_seq", allocationSize = 1)
 @Data
-public class AppUser extends BaseModel {
+public class UserModel extends BaseModel {
 
     @Column(name = "username")
     private String username;
@@ -18,10 +19,14 @@ public class AppUser extends BaseModel {
     @Column(name = "password")
     private String password;
 
-    public AppUser() {
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+    public UserModel() {
     }
 
-    public AppUser(String username, String password) {
+    public UserModel(String username, String password) {
         this.username = username;
         this.password = password;
     }

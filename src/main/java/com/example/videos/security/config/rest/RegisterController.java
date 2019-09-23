@@ -1,7 +1,7 @@
 package com.example.videos.security.config.rest;
 
 import com.example.videos.dto.RegisterDto;
-import com.example.videos.model.AppUser;
+import com.example.videos.model.appUser.UserModel;
 import com.example.videos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,7 @@ public class RegisterController {
         if ( userService.findByUsername(dto.getUsername()).isPresent() ) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(HttpStatus.CONFLICT);
         }
-        AppUser user = new AppUser(dto.getUsername(), passwordEncoder.encode(dto.getPassword()));
+        UserModel user = new UserModel(dto.getUsername(), passwordEncoder.encode(dto.getPassword()));
         userService.save(user);
         System.out.println(passwordEncoder.encode(dto.getPassword()));
         return ResponseEntity.ok(dto);
