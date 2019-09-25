@@ -52,7 +52,9 @@ public class JwtUtil implements Serializable {
     //generate token for user
     public String generateToken(BjjPractitioner userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", userDetails.getAuthorities().iterator().next());
+        if ( userDetails.getAuthorities().iterator().hasNext() ) {
+            claims.put("role", userDetails.getAuthorities().iterator().next());
+        }
         return doGenerateToken(claims, userDetails.getUsername());
     }
 

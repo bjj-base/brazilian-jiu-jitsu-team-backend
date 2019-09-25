@@ -40,7 +40,9 @@ public class BrasaAuthenticationManager implements AuthenticationManager {
 //            throw new DisabledException("1001");
 //        }
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.get().getRole().getName()));
+        if ( user.get().getRole() != null ) {
+            authorities.add(new SimpleGrantedAuthority(user.get().getRole().getName()));
+        }
         if (!passwordEncoder.matches(password, user.get().getPassword())) {
             throw new BadCredentialsException("1000");
         }

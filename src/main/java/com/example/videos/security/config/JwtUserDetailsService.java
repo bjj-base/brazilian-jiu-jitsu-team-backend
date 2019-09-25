@@ -29,7 +29,9 @@ public class JwtUserDetailsService implements UserDetailsService {
         if ( appUser.isPresent() ) {
             System.out.println(appUser.get().getUsername());
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(appUser.get().getRole().getName()));
+            if ( appUser.get().getRole() != null ) {
+                authorities.add(new SimpleGrantedAuthority(appUser.get().getRole().getName()));
+            }
 //            return new User("momo", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
 //                    new ArrayList<>());
             return new BjjPractitioner(
