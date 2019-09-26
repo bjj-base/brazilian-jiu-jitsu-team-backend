@@ -1,5 +1,6 @@
 package com.example.videos.service;
 
+import com.example.videos.model.tags.Tag;
 import com.example.videos.model.video.BrasaVideo;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.video.YoutubeVideo;
@@ -25,6 +26,9 @@ public class VideoService <T extends Video> {
     @Autowired
     private VideoRepository videoRepository;
 
+    public List<Video> findAllById(List<Long> ids){
+        return videoRepository.findAllById(ids);
+    }
 
     /**
      *

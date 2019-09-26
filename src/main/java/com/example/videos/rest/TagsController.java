@@ -1,6 +1,6 @@
 package com.example.videos.rest;
 
-import com.example.videos.tags.Tag;
+import com.example.videos.model.tags.Tag;
 import com.example.videos.service.TagService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

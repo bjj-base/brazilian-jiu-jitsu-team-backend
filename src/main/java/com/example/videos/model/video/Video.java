@@ -2,7 +2,7 @@ package com.example.videos.model.video;
 
 import com.example.videos.dto.VideoDto;
 import com.example.videos.model.BaseModel;
-import com.example.videos.tags.Tag;
+import com.example.videos.model.tags.Tag;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -47,8 +47,4 @@ public abstract class Video extends BaseModel implements Serializable {
     )
     private List<Tag> tags = new ArrayList<>();
 
-    public VideoDto toDto() {
-        VideoDto dto = new VideoDto();
-        return dto;
-    }
 }

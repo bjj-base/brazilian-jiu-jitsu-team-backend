@@ -1,10 +1,9 @@
 package com.example.videos.repository;
 
-import com.example.videos.tags.Tag;
+import com.example.videos.model.tags.Tag;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface TagRepository extends AbstractRepository<Tag> {

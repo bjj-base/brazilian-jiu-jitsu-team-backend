@@ -1,13 +1,12 @@
 package com.example.videos.service;
 
-import com.example.videos.tags.Tag;
+import com.example.videos.model.tags.Tag;
 import com.example.videos.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class TagService {

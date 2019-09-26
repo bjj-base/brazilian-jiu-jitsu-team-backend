@@ -9,6 +9,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class BaseModelDto implements Serializable {
     private Long id;
+    private String description;
+    private String name;
 
     public BaseModelDto(Long id) {
         this.id = id;

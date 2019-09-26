@@ -1,11 +1,6 @@
-package com.example.videos.tags;
+package com.example.videos.model.tags;
 
 import com.example.videos.model.BaseModel;
-import com.example.videos.model.video.Video;
-import lombok.Data;
-
-import javax.persistence.*;
-import java.util.List;
 
 //@Entity
 //@Table(name = "video_tag_association", indexes = {

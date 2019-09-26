@@ -7,7 +7,7 @@ import com.example.videos.model.video.Video;
 import com.example.videos.model.video.YoutubeVideo;
 import com.example.videos.service.TagService;
 import com.example.videos.service.VideoService;
-import com.example.videos.tags.Tag;
+import com.example.videos.model.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
