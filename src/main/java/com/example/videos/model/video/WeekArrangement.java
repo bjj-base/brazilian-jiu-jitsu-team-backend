@@ -1,15 +1,16 @@
 package com.example.videos.model.video;
 
 import com.example.videos.model.BaseModel;
+import com.example.videos.model.Day;
 import com.example.videos.model.tags.Tag;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -20,6 +21,10 @@ import java.util.Set;
 @SequenceGenerator(name = "SEQ_STORE", sequenceName = "week_arrangement_id_seq", allocationSize = 1)
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@TypeDef(
+        name = "jsonb",
+        typeClass = JsonBinaryType.class
+)
 public class WeekArrangement extends BaseModel {
 
     @Column(name = "name")
@@ -28,7 +33,9 @@ public class WeekArrangement extends BaseModel {
     @Column(name = "description")
     private String description;
 
-
+//    @Type(type = "jsonb")
+//    @Column(name = "days")
+//    private String selectedDays;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinTable(
@@ -43,5 +50,12 @@ public class WeekArrangement extends BaseModel {
             joinColumns = @JoinColumn(name = "week_arrangement_id"),
             inverseJoinColumns = @JoinColumn(name = "video_id"))
     private Set<Video> videos;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Day> days;
+
+
+
+
 
 }

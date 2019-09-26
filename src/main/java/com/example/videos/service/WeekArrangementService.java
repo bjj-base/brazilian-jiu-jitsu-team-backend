@@ -1,6 +1,7 @@
 package com.example.videos.service;
 
 import com.example.videos.dto.WeekArrangementDto;
+import com.example.videos.model.Day;
 import com.example.videos.model.tags.Tag;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.video.WeekArrangement;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,7 +39,11 @@ public class WeekArrangementService {
         weekArrangement.setTags(new HashSet<>(tagService.findAllById(dto.getTagIdList())));
 
         List<Video> videos = videoService.findAllById(dto.getSelectedVideos());
-
+        Set<Day> days = dto.getSelectedDays()
+                .stream()
+                .map(Day::new)
+                .collect(Collectors.toSet());
+        weekArrangement.setDays(days);
         weekArrangement.setVideos(videos.stream().collect(Collectors.toSet()));
         weekArrangementRepository.save(weekArrangement);
         System.out.println(weekArrangement);
