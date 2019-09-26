@@ -1,12 +1,11 @@
 package com.example.videos.model.video;
 
 import com.example.videos.model.BaseModel;
-import com.example.videos.model.Day;
+import com.example.videos.model.DayRange;
 import com.example.videos.model.tags.Tag;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -51,8 +50,9 @@ public class WeekArrangement extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "video_id"))
     private Set<Video> videos;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Day> days;
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "day_range_id")
+    private DayRange dayRange = new DayRange();
 
 
 
