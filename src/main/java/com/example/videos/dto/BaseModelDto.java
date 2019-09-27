@@ -15,4 +15,10 @@ public class BaseModelDto implements Serializable {
     public BaseModelDto(Long id) {
         this.id = id;
     }
+
+    public BaseModelDto(Long id, String description, String name) {
+        this.id = id;
+        this.description = description;
+        this.name = name;
+    }
 }

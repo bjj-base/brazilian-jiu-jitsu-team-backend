@@ -2,6 +2,7 @@ package com.example.videos.service;
 
 import com.example.videos.dto.WeekArrangementDto;
 import com.example.videos.model.DayRange;
+import com.example.videos.model.tags.Tag;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.video.WeekArrangement;
 import com.example.videos.repository.WeekArrangementRepository;
@@ -9,10 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,7 +47,25 @@ public class WeekArrangementService {
     }
 
 
-    public Optional<WeekArrangement> findOneById(Long id) {
-        return weekArrangementRepository.findById(id);
+    public WeekArrangementDto findOneById(Long id) {
+        Optional<WeekArrangement> weekArrangement = weekArrangementRepository.findById(id);
+        if( weekArrangement.isPresent()) {
+            DayRange dayRange = weekArrangement.get().getDayRange();
+            List<LocalDate> week = new ArrayList<>();
+            week.add(dayRange.getStarting_date());
+            week.add(dayRange.getEnding_date());
+
+
+            return new WeekArrangementDto.DtoBuilder()
+                    .withId(weekArrangement.get().getId())
+                    .withDescription(weekArrangement.get().getDescription())
+//                    .withSelectedDays(weekArrangement.get().getDayRange().)
+                    .withName(weekArrangement.get().getName())
+                    .withTags(weekArrangement.get().getTags().stream().map(Tag::getId).collect(Collectors.toList()))
+                    .withSelectedDays(week)
+                    .withSelectedVideos(weekArrangement.get().getVideos().stream().map(Video::getId).collect(Collectors.toList()))
+                    .build();
+        }
+        return null;
     }
 }

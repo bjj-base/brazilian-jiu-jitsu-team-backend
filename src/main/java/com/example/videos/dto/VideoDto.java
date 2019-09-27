@@ -9,16 +9,12 @@ import java.util.List;
 @NoArgsConstructor
 public class VideoDto extends BaseModelDto {
 
-    private String name;
-    private String description;
     private String source;
     private String sourceId;
     private List<Long> tagIdList;
 
     public VideoDto(Long id, String name, String description, String source, String sourceId, List<Long> tagIdList) {
-        super(id);
-        this.name = name;
-        this.description = description;
+        super(id, name, description);
         this.source = source;
         this.sourceId = sourceId;
         this.tagIdList = tagIdList;
