@@ -30,7 +30,7 @@ public class JwtUserDetailsService implements UserDetailsService {
             System.out.println(appUser.get().getUsername());
             List<GrantedAuthority> authorities = new ArrayList<>();
             if ( appUser.get().getRole() != null ) {
-                authorities.add(new SimpleGrantedAuthority(appUser.get().getRole().getName()));
+                authorities.add(new SimpleGrantedAuthority(appUser.get().getRole().getName().toString()));
             }
 //            return new User("momo", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
 //                    new ArrayList<>());

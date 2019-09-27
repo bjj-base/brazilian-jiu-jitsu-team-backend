@@ -2,6 +2,8 @@ package com.example.videos.security.config.rest;
 
 import com.example.videos.dto.RegisterDto;
 import com.example.videos.model.appUser.AppUser;
+import com.example.videos.model.appUser.Role;
+import com.example.videos.model.appUser.RoleEnum;
 import com.example.videos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/register")
 public class RegisterController {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
 
     @Autowired
     private UserService userService;
@@ -27,9 +28,7 @@ public class RegisterController {
         if ( userService.findByUsername(dto.getUsername()).isPresent() ) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(HttpStatus.CONFLICT);
         }
-        AppUser user = new AppUser(dto.getUsername(), passwordEncoder.encode(dto.getPassword()));
-        userService.save(user);
-        System.out.println(passwordEncoder.encode(dto.getPassword()));
+        userService.save(dto);
         return ResponseEntity.ok(dto);
     }
 }

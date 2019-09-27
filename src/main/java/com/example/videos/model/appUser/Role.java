@@ -15,7 +15,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Role extends BaseModel {
 
-    @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 8)
+    private RoleEnum name;
 
+    public Role(RoleEnum name) {
+        this.name = name;
+    }
 }
