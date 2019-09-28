@@ -1,7 +1,8 @@
-package com.example.videos.model.video;
+package com.example.videos.model.weekArrangement;
 
 import com.example.videos.model.BaseModel;
-import com.example.videos.model.DayRange;
+import com.example.videos.model.video.Video;
+import com.example.videos.model.weekArrangement.DayRange;
 import com.example.videos.model.tags.Tag;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;

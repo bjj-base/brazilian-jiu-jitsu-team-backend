@@ -1,7 +1,6 @@
 package com.example.videos.repository;
 
-import com.example.videos.model.video.BrasaVideo;
-import com.example.videos.model.video.WeekArrangement;
+import com.example.videos.model.weekArrangement.WeekArrangement;
 import org.springframework.stereotype.Repository;
 
 @Repository

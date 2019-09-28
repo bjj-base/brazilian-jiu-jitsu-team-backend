@@ -1,28 +1,26 @@
 package com.example.videos.dto;
 
-import com.example.videos.model.video.Video;
+import com.example.videos.model.weekArrangement.DayRange;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Data
 public class WeekArrangementDto extends BaseModelDto {
     private List<Long> selectedVideos;
-    private List<LocalDate> selectedDays;
+    private DayRange dayRange;
     private List<Long> tagIdList;
 
-    private WeekArrangementDto(Long id, String description, String name, List<Long> selectedVideos, List<LocalDate> selectedDays,  List<Long> tagIdList) {
+    private WeekArrangementDto(Long id, String description, String name, List<Long> selectedVideos, DayRange dayRange, List<Long> tagIdList) {
         super(id, name, description);
         this.selectedVideos = selectedVideos;
-        this.selectedDays = selectedDays;
+        this.dayRange = dayRange;
         this.tagIdList = tagIdList;
     }
 
     public static class DtoBuilder{
         private List<Long> selectedVideos;
-        private List<LocalDate> selectedDays;
+        private DayRange dayRange;
         private List<Long> tagIdList;
 
         private Long id;
@@ -40,8 +38,8 @@ public class WeekArrangementDto extends BaseModelDto {
             return this;
         }
 
-        public DtoBuilder withSelectedDays(List<LocalDate> selectedDays) {
-            this.selectedDays = selectedDays;
+        public DtoBuilder withSelectedRange(DayRange dayRange) {
+            this.dayRange = dayRange;
             return this;
         }
         public DtoBuilder withSelectedVideos(List<Long> selectedVideos) {
@@ -58,7 +56,7 @@ public class WeekArrangementDto extends BaseModelDto {
         }
 
         public WeekArrangementDto build(){
-            return new WeekArrangementDto(id, description, name, selectedVideos, selectedDays, tagIdList);
+            return new WeekArrangementDto(id, description, name, selectedVideos, dayRange, tagIdList);
         }
 
 
