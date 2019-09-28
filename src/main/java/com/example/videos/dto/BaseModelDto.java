@@ -16,7 +16,7 @@ public class BaseModelDto implements Serializable {
         this.id = id;
     }
 
-    public BaseModelDto(Long id, String description, String name) {
+    public BaseModelDto(Long id, String name, String description) {
         this.id = id;
         this.description = description;
         this.name = name;
