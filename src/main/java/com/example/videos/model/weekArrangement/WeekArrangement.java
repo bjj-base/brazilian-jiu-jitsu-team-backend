@@ -11,6 +11,7 @@ import org.hibernate.annotations.TypeDef;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -49,7 +50,7 @@ public class WeekArrangement extends BaseModel {
             name = "week_arrangement_video_association",
             joinColumns = @JoinColumn(name = "week_arrangement_id"),
             inverseJoinColumns = @JoinColumn(name = "video_id"))
-    private Set<Video> videos;
+    private List<Video> videos;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "day_range_id")

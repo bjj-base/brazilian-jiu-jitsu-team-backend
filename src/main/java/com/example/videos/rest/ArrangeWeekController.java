@@ -40,8 +40,9 @@ public  class ArrangeWeekController <T extends Video>{
     }
 
     @GetMapping(value = "/week/{id}")
-    public ResponseEntity<?> getWeekArrangments(@PathVariable Long id) {
-        WeekArrangementDto dto = weekArrangementService.findOneByIdToDto(id);
+    public ResponseEntity<?> getWeekArrangments(@PathVariable Long id, @RequestParam(required = false) String view) {
+
+        WeekArrangementDto dto = weekArrangementService.findOneByIdToDto(id, View.valueOf(view));
         if( dto == null ) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpEntity.EMPTY);
         return ResponseEntity.ok(dto);
     }
