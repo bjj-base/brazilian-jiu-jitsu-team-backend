@@ -4,10 +4,12 @@ import com.example.videos.model.tags.Tag;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.weekArrangement.DayRange;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class WeekArrangementDto extends BaseModelDto {
     private List<Long> selectedVideoIds;
     private List<Video> videos;
