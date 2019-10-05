@@ -18,7 +18,7 @@ public class Tag extends BaseModel {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT", length = 10000)
     private String description;
 
     public Tag() {

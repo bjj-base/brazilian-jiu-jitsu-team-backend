@@ -9,6 +9,7 @@ import com.example.videos.repository.WeekArrangementRepository;
 import com.example.videos.rest.View;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -43,7 +44,8 @@ public class WeekArrangementService {
     }
 
     public List<WeekArrangement> findAll(){
-        return weekArrangementRepository.findAll();
+        Sort sort = new Sort(Sort.Direction.DESC, "updatedAt");
+        return weekArrangementRepository.findAll(sort);
     }
 
 
