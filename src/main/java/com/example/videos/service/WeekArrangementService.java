@@ -54,7 +54,6 @@ public class WeekArrangementService {
             if ( view.equals(View.FORM) ) {
                 return new WeekArrangementDto.DtoBuilder()
                         .withId(weekArrangement.get().getId())
-                        .withName(weekArrangement.get().getName())
                         .withDescription(weekArrangement.get().getDescription())
                         .withTagIds(weekArrangement.get().getTags().stream().map(Tag::getId).collect(Collectors.toList()))
                         .withSelectedRange(dayRange)
