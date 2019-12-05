@@ -45,7 +45,7 @@ public class WeekArrangement extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 //
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinTable(
             name = "week_arrangement_video_association",
             joinColumns = @JoinColumn(name = "week_arrangement_id"),
