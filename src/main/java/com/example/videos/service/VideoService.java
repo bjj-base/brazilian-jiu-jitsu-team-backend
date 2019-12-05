@@ -1,5 +1,6 @@
 package com.example.videos.service;
 
+import com.example.videos.model.tags.Tag;
 import com.example.videos.model.video.BrasaVideo;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.video.YoutubeVideo;
@@ -7,11 +8,12 @@ import com.example.videos.repository.BrasaVideoRepository;
 import com.example.videos.repository.VideoRepository;
 import com.example.videos.repository.YoutubeVideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class VideoService <T extends Video> {
@@ -33,8 +35,7 @@ public class VideoService <T extends Video> {
      * @return
      */
     public List<Video> findAll(){
-        Sort sort = new Sort(Sort.Direction.DESC, "updatedAt");
-        return videoRepository.findAll(sort);
+        return videoRepository.findAll();
     }
 
     public Optional<T> findOneById(Long id) {

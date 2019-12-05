@@ -1,7 +1,6 @@
 package com.example.videos.repository;
 
 import com.example.videos.model.BaseModel;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
