@@ -1,11 +1,9 @@
-package com.example.videos.rest;
+package com.example.videos.controllers;
 
 import com.example.videos.dto.WeekArrangementDto;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.weekArrangement.WeekArrangement;
-import com.example.videos.service.TagService;
-import com.example.videos.service.VideoService;
-import com.example.videos.service.WeekArrangementService;
+import com.example.videos.service.implementation.WeekArrangementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -21,12 +19,6 @@ public  class ArrangeWeekController <T extends Video>{
 
     @Autowired
     private WeekArrangementService weekArrangementService;
-
-    @Autowired
-    private TagService tagService;
-
-    @Autowired
-    private VideoService videoService;
 
     @PostMapping(value = "/week")
     public ResponseEntity<?> postWeekArrangement(@RequestBody WeekArrangementDto weekArrangementDto) {

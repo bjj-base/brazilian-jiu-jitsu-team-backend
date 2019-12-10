@@ -1,4 +1,4 @@
-package com.example.videos.rest;
+package com.example.videos.controllers;
 
 public enum View {
     FULL,

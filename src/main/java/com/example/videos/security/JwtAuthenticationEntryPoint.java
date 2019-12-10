@@ -1,4 +1,4 @@
-package com.example.videos.security.config;
+package com.example.videos.security;
 
 import java.io.IOException;
 import java.io.Serializable;

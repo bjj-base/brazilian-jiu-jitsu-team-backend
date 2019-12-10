@@ -1,11 +1,10 @@
-package com.example.videos.security.config;
+package com.example.videos.security;
 
 import com.example.videos.model.appUser.AppUser;
 import com.example.videos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;

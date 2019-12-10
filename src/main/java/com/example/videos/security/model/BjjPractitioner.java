@@ -1,4 +1,4 @@
-package com.example.videos.security.config.model;
+package com.example.videos.security.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

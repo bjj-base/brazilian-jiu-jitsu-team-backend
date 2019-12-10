@@ -1,4 +1,4 @@
-package com.example.videos.security.config.jwt;
+package com.example.videos.security.jwt;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import com.example.videos.security.config.model.BjjPractitioner;
+import com.example.videos.security.model.BjjPractitioner;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

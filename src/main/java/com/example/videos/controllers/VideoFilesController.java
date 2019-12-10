@@ -1,4 +1,4 @@
-package com.example.videos.rest;
+package com.example.videos.controllers;
 
 import com.example.videos.model.video.BrasaVideo;
 import com.example.videos.service.VideoService;
@@ -18,9 +18,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.UUID.*;
 
-import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -32,55 +30,22 @@ public class VideoFilesController {
     @Autowired
     private VideoService videoService;
 
-
-//    @GetMapping(value = "/file-name")
-    @ResponseBody
-    public final ResponseEntity<InputStreamResource> retrieveResource() throws IOException {
-
-//        long rangeStart = Longs.tryParse(range.replace("bytes=","").split("-")[0]);//parse range header, which is bytes=0-10000 or something like that
-//        long rangeEnd = Longs.tryParse(range.replace("bytes=","").split("-")[0]);//parse range header, which is bytes=0-10000 or something like that
-        long contentLenght = 500;//you must have it somewhere stored or read the full file size
-
-        InputStream inputStream = getClass().getResource("videos/GL010034.lrv").openStream();//or read from wherever your data is into stream
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf("video/mp4"));
-        headers.set("Accept-Ranges", "bytes");
-        headers.set("Expires", "0");
-        headers.set("Cache-Control", "no-cache, no-store");
-        headers.set("Connection", "keep-alive");
-        headers.set("Content-Transfer-Encoding", "binary");
-//        headers.set("Content-Length", String.valueOf(rangeEnd - rangeStart));
-
-//if start range assume that all content
-//        if (rangeStart == 0) {
-            return new ResponseEntity<>(new InputStreamResource(inputStream), headers, OK);
-//        } /*else {
-//            headers.set("Content-Range", format("bytes %s-%s/%s", rangeStart, rangeEnd, contentLenght));
-//            return new ResponseEntity<>(new InputStreamResource(inputStream), headers, PARTIAL_CONTENT);
-//        }*/
-    }
-
     @PostMapping(value = "/upload")
     public ResponseEntity<?> upload (@RequestParam("file") MultipartFile[] files) {
         for ( MultipartFile file : Arrays.asList(files) ) {
-
             if (file.isEmpty()) {
                 continue;
             }
             if ( !file.getContentType().equals("video/mp4") ) {
                 continue;
             }
-//            if (!"application/pdf".equals(file.getContentType())) {
-//                continue;
-//            }
-            // Save the actual Images
             String uuid = UUID.randomUUID().toString();
             try {
                 Files.write(Paths.get(VIDEOS_PATH + "/" + uuid), file.getBytes());
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                return ResponseEntity.ok(videoService.saveBrasa(new BrasaVideo(uuid, file.getOriginalFilename())));
+                return ResponseEntity.ok(videoService.saveBrasaVideo(new BrasaVideo(uuid, file.getOriginalFilename())));
             }
         }
         return ResponseEntity.ok("TODO");

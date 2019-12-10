@@ -1,4 +1,4 @@
-package com.example.videos.rest;
+package com.example.videos.controllers;
 
 import com.example.videos.model.tags.Tag;
 import com.example.videos.service.TagService;

@@ -1,7 +1,7 @@
-package com.example.videos.security.config;
+package com.example.videos.security;
 
 import com.example.videos.model.appUser.AppUser;
-import com.example.videos.security.config.model.BjjPractitioner;
+import com.example.videos.security.model.BjjPractitioner;
 import com.example.videos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,106 +1,22 @@
 package com.example.videos.service;
 
-import com.example.videos.model.tags.Tag;
 import com.example.videos.model.video.BrasaVideo;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.video.YoutubeVideo;
-import com.example.videos.repository.BrasaVideoRepository;
-import com.example.videos.repository.VideoRepository;
-import com.example.videos.repository.YoutubeVideoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-@Service
-public class VideoService <T extends Video> {
-    @Autowired
-    private BrasaVideoRepository brasaVideoRepository;
+public interface VideoService<T extends Video> {
 
-    @Autowired
-    private YoutubeVideoRepository youtubeVideoRepository;
+    List<Video> findAll();
+    List<Video> findAllById(List<Long> ids);
+    Optional<T> findOneById(Long id);
+    T save(T video);
+    BrasaVideo saveBrasaVideo(BrasaVideo video);
+    Optional<BrasaVideo> findOneBrasa(Long id);
+    YoutubeVideo saveYoutube(YoutubeVideo video);
 
-    @Autowired
-    private VideoRepository videoRepository;
-
-    public List<Video> findAllById(List<Long> ids){
-        return videoRepository.findAllById(ids);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<Video> findAll(){
-        return videoRepository.findAll();
-    }
-
-    public Optional<T> findOneById(Long id) {
-        return videoRepository.findById(id);
-    }
-
-    public T save(T video){
-        return (T) videoRepository.save(video);
-    }
-
-    /**
-     *
-     * @param video
-     * @return
-     */
-    public BrasaVideo saveBrasa(BrasaVideo video) {
-        return brasaVideoRepository.save(video);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<BrasaVideo> findAllBrasa(){
-        return brasaVideoRepository.findAll();
-    }
-
-
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-
-    public Optional<BrasaVideo> findOneBrasa(Long id) {
-        return brasaVideoRepository.findById(id);
-    }
-
-    /**
-     *
-     * @param video
-     * @return
-     */
-
-    public YoutubeVideo saveYoutube(YoutubeVideo video) {
-        return youtubeVideoRepository.save(video);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<YoutubeVideo> findAllYoutube(){
-        return youtubeVideoRepository.findAll();
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    public Optional<YoutubeVideo> findOneYoutube(Long id) {
-        return youtubeVideoRepository.findById(id);
-    }
 
 
 }

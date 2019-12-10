@@ -1,4 +1,4 @@
-package com.example.videos.rest;
+package com.example.videos.controllers;
 
 import com.example.videos.dto.VideoDto;
 import com.example.videos.model.video.BrasaVideo;
@@ -6,8 +6,8 @@ import com.example.videos.model.video.Source;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.video.YoutubeVideo;
 import com.example.videos.service.TagService;
-import com.example.videos.service.VideoService;
 import com.example.videos.model.tags.Tag;
+import com.example.videos.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -69,16 +69,6 @@ public class VideosController {
 
     /**
      *
-     * @param video
-     * @return
-     */
-    @PostMapping
-    public ResponseEntity<?> postBrasaVideo(@RequestBody BrasaVideo video) {
-        return ResponseEntity.ok(videoService.saveBrasa(video));
-    }
-
-    /**
-     *
      * @param id
      * @return
      * @throws InvocationTargetException
@@ -130,10 +120,6 @@ public class VideosController {
 
             return ResponseEntity.ok(videoService.save(video.get()));
         }
-//        else if ( video.isPresent() && video.get().getSource().equals("BRASA_HELLAS")) {
-//            BeanUtils.copyProperties(video.get(), dto);
-//            return ResponseEntity.ok(videoService.saveBrasa((BrasaVideo) video.get()));
-//        }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpEntity.EMPTY);
     }
 

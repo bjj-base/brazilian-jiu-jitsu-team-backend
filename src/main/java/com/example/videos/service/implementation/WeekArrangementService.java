@@ -1,4 +1,4 @@
-package com.example.videos.service;
+package com.example.videos.service.implementation;
 
 import com.example.videos.dto.WeekArrangementDto;
 import com.example.videos.model.weekArrangement.DayRange;
@@ -6,7 +6,9 @@ import com.example.videos.model.tags.Tag;
 import com.example.videos.model.video.Video;
 import com.example.videos.model.weekArrangement.WeekArrangement;
 import com.example.videos.repository.WeekArrangementRepository;
-import com.example.videos.rest.View;
+import com.example.videos.controllers.View;
+import com.example.videos.service.TagService;
+import com.example.videos.service.VideoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,9 +27,6 @@ public class WeekArrangementService {
     @Autowired
     private TagService tagService;
 
-    public WeekArrangement save(WeekArrangement tag) {
-        return weekArrangementRepository.save(tag);
-    }
 
     public WeekArrangement save(WeekArrangementDto dto) {
         WeekArrangement weekArrangement = new WeekArrangement();

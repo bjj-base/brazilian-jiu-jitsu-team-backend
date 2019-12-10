@@ -1,8 +1,8 @@
-package com.example.videos.security.config.filter;
+package com.example.videos.security.filter;
 
-import com.example.videos.security.config.JwtUserDetailsService;
-import com.example.videos.security.config.jwt.JwtUtil;
-import com.example.videos.security.config.model.BjjPractitioner;
+import com.example.videos.security.JwtUserDetailsService;
+import com.example.videos.security.jwt.JwtUtil;
+import com.example.videos.security.model.BjjPractitioner;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
