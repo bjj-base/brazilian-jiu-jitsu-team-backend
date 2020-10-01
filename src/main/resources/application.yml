@@ -1,0 +1,54 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 12008MB
+      enabled: true
+  h2:
+    console:
+      # with console enabled you could access the database via your browser,
+      # but for this feature to work 2 things are required:
+      #   1.spring-boot starter-web dependency
+      #   2.uncomment the datasource.url
+      enabled: false
+  datasource:
+    platform: org.hibernate.dialect.H2Dialect
+    # url: jdbc:h2:mem:test
+  jpa:
+    hibernate:
+      # we create our schema in schema.sql under resources folder and with ddl-auto:validate option our schema is validated.
+
+      # Development tip: ddl-auto:create-drop option is really handy, because the schema is created on the fly. Once it is finalized
+      # you can generate the schema creation scripts with "SCRIPT NODATA" SQL command paste it to schema.sql and change this option to validate
+      ddl-auto: create
+
+#upload.path.videos=/root/brasa/uploaded-videos/
+#logging.level.root = debug
+#logging.level.root = error
+#spring.datasource.driver-class-name=org.postgresql.Driver
+#spring.datasource.url=jdbc:postgresql://localhost:5432/bjj_database
+#spring.datasource.username=postgres
+#spring.datasource.password=3637
+#
+#spring.jpa.show-sql=false
+#spring.jpa.generate-ddl=false
+#spring.jpa.hibernate.ddl-auto=validate
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+#
+#spring.jpa.database=POSTGRESQL
+#spring.datasource.platform=postgres
+#spring.datasource.url=jdbc:postgresql://localhost:5432/bjj_database
+#spring.datasource.username=postgres
+#spring.datasource.password=3637
+#
+#
+#spring.jpa.generate-ddl=true
+#spring.jpa.show-sql=true
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+
+
+#jwt.secret=momo
+
+#playing with git2
+#playing with git3
