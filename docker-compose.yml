@@ -1,0 +1,39 @@
+version: '3.7'
+
+
+services:
+
+#  client-server:
+#    build:
+#      context: ./front-end-app
+#      dockerfile: Dockerfile
+#      args:
+#        REACT_APP_API_BASE_URL: http://127.0.0.1:8080/api
+#    ports:
+#      - 9091:80 # Forward the exposed port 80 on the container to port 80 on the host machine
+#    restart: always
+#    networks:
+#      app-network:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 1312:80
+    networks:
+      app-network:
+    depends_on:
+      - api-server
+  api-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+#    ports:
+#      - 9092:8080
+    networks:
+      app-network:
+
+
+# Networks to be created to facilitate communication between containers
+networks:
+  app-network:
